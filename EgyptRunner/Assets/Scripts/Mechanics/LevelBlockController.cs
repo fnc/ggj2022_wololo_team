@@ -7,6 +7,8 @@ namespace Platformer.Mechanics
     {
         public LevelBlockInstance[] levelBlocks;
 
+        public LevelBlockInstance destroyableLevelBlock { get; set; }
+        public LevelBlockInstance previousLevelBlock { get; set; }
         public LevelBlockInstance currentLevelBlock { get; set; }
         public LevelBlockInstance nextLevelBlock { get; set; }
         private float lastXPosition = 0f;
@@ -30,12 +32,21 @@ namespace Platformer.Mechanics
         }
         public void CreateNextBlock()
         {
+            if (destroyableLevelBlock) {
+                Destroy(destroyableLevelBlock.gameObject);
+            }
             Debug.Log("Next Block Creation.");
             var currentBlockWidth = currentLevelBlock.gameObject.GetComponent<Collider2D>().bounds.size.x;
             lastXPosition += currentBlockWidth;
+
+            destroyableLevelBlock = previousLevelBlock;
+            previousLevelBlock = currentLevelBlock;
             currentLevelBlock = nextLevelBlock;
+
             Debug.Log(lastXPosition);
-            nextLevelBlock = Instantiate(levelBlocks[0], new Vector3(lastXPosition, 0, 0), Quaternion.identity);
+            int blockCount = levelBlocks.Length;
+            int myRandomIndex = Random.Range(0, blockCount);
+            nextLevelBlock = Instantiate(levelBlocks[myRandomIndex], new Vector3(lastXPosition, 0, 0), Quaternion.identity);
         }
     }
 }

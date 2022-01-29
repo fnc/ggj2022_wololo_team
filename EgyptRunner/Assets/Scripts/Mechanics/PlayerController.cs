@@ -26,6 +26,14 @@ namespace Platformer.Mechanics
         /// Initial jump velocity at the start of a jump.
         /// </summary>
         public float jumpTakeOffSpeed = 7;
+        /// <summary>
+        /// Gliding Lift factor.
+        /// </summary>
+        public float glidingLiftCoefficient = 1f;
+        /// <summary>
+        /// Gliding Drag factor.
+        /// </summary>
+        public float glidingDragCoefficient = 1.5f;
 
         public JumpState jumpState = JumpState.Grounded;
         private bool stopJump;
@@ -35,6 +43,7 @@ namespace Platformer.Mechanics
         public bool controlEnabled = true;
 
         bool jump;
+        bool glide;
         Vector2 move;
         SpriteRenderer spriteRenderer;
         internal Animator animator;
@@ -49,6 +58,7 @@ namespace Platformer.Mechanics
             collider2d = GetComponent<Collider2D>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             animator = GetComponent<Animator>();
+            glide = false;
         }
 
         protected override void Update()
@@ -58,11 +68,14 @@ namespace Platformer.Mechanics
                 move.x = Input.GetAxis("Horizontal");
                 if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
                     jumpState = JumpState.PrepareToJump;
-                else if (Input.GetButtonUp("Jump"))
-                {
-                    stopJump = true;
-                    Schedule<PlayerStopJump>().player = this;
+                if (jumpState == JumpState.InFlight && Input.GetButtonDown("Action")) {
+                    jumpState = JumpState.PrepareToGlide;
                 }
+                //else if (Input.GetButtonUp("Jump"))
+               // {
+               //     stopJump = true;
+               //     Schedule<PlayerStopJump>().player = this;
+               // }
             }
             else
             {
@@ -98,6 +111,18 @@ namespace Platformer.Mechanics
                     break;
                 case JumpState.Landed:
                     jumpState = JumpState.Grounded;
+                    glide = false;
+                    break;
+                case JumpState.PrepareToGlide:
+                    jumpState = JumpState.Gliding;
+                    glide = true;
+                    break;
+                case JumpState.Gliding:
+                    if (IsGrounded)
+                    {
+                        Schedule<PlayerLanded>().player = this;
+                        jumpState = JumpState.Landed;
+                    }
                     break;
             }
         }
@@ -109,14 +134,15 @@ namespace Platformer.Mechanics
                 velocity.y = jumpTakeOffSpeed * model.jumpModifier;
                 jump = false;
             }
-            else if (stopJump)
-            {
-                stopJump = false;
-                if (velocity.y > 0)
-                {
-                    velocity.y = velocity.y * model.jumpDeceleration;
-                }
-            }
+            //else if (stopJump)
+            //{
+            //    stopJump = false;
+            //    if (velocity.y > 0)
+            //    {
+            //        velocity.y = velocity.y * model.jumpDeceleration;
+            //    }
+            //}
+ 
 
             if (move.x > 0.01f)
                 spriteRenderer.flipX = false;
@@ -127,6 +153,16 @@ namespace Platformer.Mechanics
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
             targetVelocity = move * maxSpeed;
+
+            if (glide)
+            {
+                this.gravityModifier = glidingLiftCoefficient;
+                targetVelocity.x *= glidingDragCoefficient;
+            }
+            else
+            {
+                this.gravityModifier = 1f;
+            }
         }
 
         public enum JumpState
@@ -135,7 +171,9 @@ namespace Platformer.Mechanics
             PrepareToJump,
             Jumping,
             InFlight,
-            Landed
+            Landed,
+            PrepareToGlide,
+            Gliding
         }
     }
 }

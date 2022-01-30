@@ -2039,6 +2039,11 @@ MonoBehaviour:
   - {fileID: 7509802762753286898, guid: f91cc4796ef03224787d795c8c8f911d, type: 3}
   - {fileID: 3698073591224728859, guid: ac1a554da25776f4e80873abdc8e523c, type: 3}
   - {fileID: 3698073591224728859, guid: 4c045e50999bbdc4e966d79751d0d0c5, type: 3}
+  - {fileID: 4713051961157500396, guid: 7a0c5715d8eb08b44b3b3e63c3431dc0, type: 3}
+  - {fileID: 8729003092685065937, guid: 0db36fbb6de1c7e428f3a10e684a4701, type: 3}
+  - {fileID: 5515659969898262845, guid: d439c58dad3b0224e9f8e88ef533d4e3, type: 3}
+  - {fileID: 1258480415017863095, guid: 5102069e0d574ea4a881ac47bc8b39dc, type: 3}
+  - {fileID: 949798246531770417, guid: 3aa505bc804fefe4f9ffcf7e357bdb8c, type: 3}
 --- !u!4 &801817494
 Transform:
   m_ObjectHideFlags: 0
@@ -4688,7 +4693,7 @@ MonoBehaviour:
   gravityModifier: 1
   velocity: {x: 0, y: 0}
   jumpAudio: {fileID: 8300000, guid: 0d9180d326cf5c54a94c761214bfac93, type: 3}
-  respawnAudio: {fileID: 8300000, guid: e18959d46b63f3c4c8cc020a433cf848, type: 3}
+  respawnAudio: {fileID: 8300000, guid: c429c04b719c7994aa56084363fe5567, type: 3}
   ouchAudio: {fileID: 8300000, guid: 0d9180d326cf5c54a94c761214bfac93, type: 3}
   mesh: {fileID: 8072594484079099599}
   m_MainTexture: {fileID: 2800000, guid: b4474ed0af01f6c47b9d173fa9a1d503, type: 3}

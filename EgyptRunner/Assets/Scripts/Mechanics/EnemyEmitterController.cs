@@ -23,7 +23,7 @@ namespace Platformer.Mechanics
             if (Time.time >= nextUpdate)
             {                
 
-                nextUpdate = Mathf.FloorToInt(Time.time) + Random.Range(0, 5);
+                nextUpdate = Mathf.FloorToInt(Time.time) + Random.Range(1, 4);
                 int spawnCount = spawnPoints.Length;
                 int myRandomIndex = Random.Range(0, spawnCount);
                 bool isAltEnemy = (Random.value > 0.5f);

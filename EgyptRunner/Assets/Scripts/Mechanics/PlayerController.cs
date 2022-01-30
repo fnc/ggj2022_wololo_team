@@ -77,7 +77,10 @@ namespace Platformer.Mechanics
                 if (jumpState == JumpState.Grounded && Input.GetButtonDown("Jump"))
                     jumpState = JumpState.PrepareToJump;
                 if (jumpState == JumpState.InFlight && Input.GetButtonDown("Action")) {
-                    jumpState = JumpState.PrepareToGlide;
+                    if (!OppositeState)
+                    {
+                        jumpState = JumpState.PrepareToGlide;
+                    }
                 }
                 
                 if (Input.GetButtonDown("Change"))

@@ -4316,6 +4316,8 @@ MonoBehaviour:
   respawnAudio: {fileID: 8300000, guid: e18959d46b63f3c4c8cc020a433cf848, type: 3}
   ouchAudio: {fileID: 8300000, guid: 6c05149e5a2fba64ba172e25a61074b7, type: 3}
   mesh: {fileID: 8072594484079099599}
+  m_MainTexture: {fileID: 2800000, guid: b4474ed0af01f6c47b9d173fa9a1d503, type: 3}
+  m_AltMainTexture: {fileID: 2800000, guid: 3feb44fd7c0f2c2419447c540d5d83e1, type: 3}
   maxSpeed: 3
   jumpTakeOffSpeed: 10
   glidingLiftCoefficient: 0.01

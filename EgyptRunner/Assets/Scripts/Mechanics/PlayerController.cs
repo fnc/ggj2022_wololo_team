@@ -18,6 +18,10 @@ namespace Platformer.Mechanics
         public AudioClip respawnAudio;
         public AudioClip ouchAudio;
         public GameObject mesh;
+        Material m_Material;
+        public Texture m_MainTexture, m_AltMainTexture;
+
+        bool OppositeState { get; set; }
 
         /// <summary>
         /// Max horizontal speed of the player.
@@ -59,7 +63,9 @@ namespace Platformer.Mechanics
             audioSource = GetComponent<AudioSource>();
             collider2d = GetComponent<Collider2D>();
             //spriteRenderer = mesh.GetComponent<MeshRenderer>();
+            m_Material = mesh.GetComponent<Renderer>().material;
             //animator = GetComponent<Animator>();
+            OppositeState = false;
             glide = false;
         }
 
@@ -73,11 +79,24 @@ namespace Platformer.Mechanics
                 if (jumpState == JumpState.InFlight && Input.GetButtonDown("Action")) {
                     jumpState = JumpState.PrepareToGlide;
                 }
+                
+                if (Input.GetButtonDown("Change"))
+                {
+                    if (OppositeState) {
+                        m_Material.SetTexture("_MainTex", m_MainTexture);
+                        OppositeState = false;
+                    }
+                    else
+                    {
+                        m_Material.SetTexture("_MainTex", m_AltMainTexture);
+                        OppositeState = true;
+                    }
+                }
                 //else if (Input.GetButtonUp("Jump"))
-               // {
-               //     stopJump = true;
-               //     Schedule<PlayerStopJump>().player = this;
-               // }
+                // {
+                //     stopJump = true;
+                //     Schedule<PlayerStopJump>().player = this;
+                // }
             }
             else
             {

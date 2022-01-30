@@ -1944,6 +1944,8 @@ MonoBehaviour:
   - {fileID: 8497226345864350284, guid: d8734af1055e9024bb684b7152fc3545, type: 3}
   - {fileID: 400629731950723486, guid: aedba6cf0b8db92418b879f435f7bf76, type: 3}
   - {fileID: 7509802762753286898, guid: f91cc4796ef03224787d795c8c8f911d, type: 3}
+  - {fileID: 3698073591224728859, guid: ac1a554da25776f4e80873abdc8e523c, type: 3}
+  - {fileID: 3698073591224728859, guid: 4c045e50999bbdc4e966d79751d0d0c5, type: 3}
 --- !u!4 &801817494
 Transform:
   m_ObjectHideFlags: 0

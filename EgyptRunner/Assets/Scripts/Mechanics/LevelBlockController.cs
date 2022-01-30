@@ -33,7 +33,7 @@ namespace Platformer.Mechanics
         public void CreateNextBlock()
         {
             if (destroyableLevelBlock) {
-                Destroy(destroyableLevelBlock.gameObject);
+                //Destroy(destroyableLevelBlock.gameObject);
             }
             Debug.Log("Next Block Creation.");
             var currentBlockWidth = currentLevelBlock.gameObject.GetComponent<Collider2D>().bounds.size.x;

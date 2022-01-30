@@ -57,6 +57,8 @@ MonoBehaviour:
   ouchAudio: {fileID: 8300000, guid: 6c05149e5a2fba64ba172e25a61074b7, type: 3}
   maxSpeed: 3
   jumpTakeOffSpeed: 7
+  glidingLiftCoefficient: 1
+  glidingDragCoefficient: 1.5
   jumpState: 0
   collider2d: {fileID: 0}
   audioSource: {fileID: 0}

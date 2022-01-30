@@ -17,6 +17,7 @@ namespace Platformer.Mechanics
         public AudioClip jumpAudio;
         public AudioClip respawnAudio;
         public AudioClip ouchAudio;
+        public GameObject mesh;
 
         /// <summary>
         /// Max horizontal speed of the player.
@@ -45,8 +46,9 @@ namespace Platformer.Mechanics
         bool jump;
         bool glide;
         Vector2 move;
-        SpriteRenderer spriteRenderer;
-        internal Animator animator;
+        //SpriteRenderer spriteRenderer;
+        MeshRenderer spriteRenderer;
+        public Animator animator;
         readonly PlatformerModel model = Simulation.GetModel<PlatformerModel>();
 
         public Bounds Bounds => collider2d.bounds;
@@ -56,8 +58,8 @@ namespace Platformer.Mechanics
             health = GetComponent<Health>();
             audioSource = GetComponent<AudioSource>();
             collider2d = GetComponent<Collider2D>();
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            animator = GetComponent<Animator>();
+            //spriteRenderer = mesh.GetComponent<MeshRenderer>();
+            //animator = GetComponent<Animator>();
             glide = false;
         }
 
@@ -142,12 +144,12 @@ namespace Platformer.Mechanics
             //        velocity.y = velocity.y * model.jumpDeceleration;
             //    }
             //}
- 
 
-            if (move.x > 0.01f)
-                spriteRenderer.flipX = false;
-            else if (move.x < -0.01f)
-                spriteRenderer.flipX = true;
+
+            //if (move.x > 0.01f)
+            //spriteRenderer.flipX = false;
+            //else if (move.x < -0.01f)
+            //spriteRenderer.flipX = true;
 
             animator.SetBool("grounded", IsGrounded);
             animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);

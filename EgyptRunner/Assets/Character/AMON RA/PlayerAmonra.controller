@@ -200,7 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t: 0
   modulus: 1
-  clip: {fileID: 8300000, guid: bdb49257b73be764a8c04e4f37302e0e, type: 3}
+  clip: {fileID: 8300000, guid: 36e55e2e970649146989345fb7babba4, type: 3}
 --- !u!114 &114742276622948332
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -230,7 +230,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t: 0.5
   modulus: 1
-  clip: {fileID: 8300000, guid: 3318e557ea5714340abb5376ce7fb8c6, type: 3}
+  clip: {fileID: 8300000, guid: 36e55e2e970649146989345fb7babba4, type: 3}
 --- !u!1101 &1101000010127028388
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

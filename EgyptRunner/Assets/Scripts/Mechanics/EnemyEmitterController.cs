@@ -8,6 +8,7 @@ namespace Platformer.Mechanics
     {
         public Transform[] spawnPoints;
         public GameObject enemy;
+        public GameObject enemyAlt;
         private int nextUpdate = 1;
         // Start is called before the first frame update
         void Start()
@@ -22,11 +23,18 @@ namespace Platformer.Mechanics
             if (Time.time >= nextUpdate)
             {                
 
-                nextUpdate = Mathf.FloorToInt(Time.time) + 3;
+                nextUpdate = Mathf.FloorToInt(Time.time) + Random.Range(0, 5);
                 int spawnCount = spawnPoints.Length;
                 int myRandomIndex = Random.Range(0, spawnCount);
-
-                Instantiate(enemy, spawnPoints[myRandomIndex].position, Quaternion.identity);
+                bool isAltEnemy = (Random.value > 0.5f);
+                if (isAltEnemy) 
+                {
+                    Instantiate(enemyAlt, spawnPoints[myRandomIndex].position, Quaternion.identity);
+                }
+                else
+                {
+                    Instantiate(enemy, spawnPoints[myRandomIndex].position, Quaternion.identity);
+                }
             }
             
         }

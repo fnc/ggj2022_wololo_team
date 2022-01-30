@@ -20,7 +20,10 @@ namespace Platformer.Gameplay
 
         public override void Execute()
         {
+            if(enemy.IsAlt && !player.OppositeState )
               Schedule<PlayerDeath>();
+            if (!enemy.IsAlt && player.OppositeState)
+                Schedule<PlayerDeath>();
         }
     }
 }

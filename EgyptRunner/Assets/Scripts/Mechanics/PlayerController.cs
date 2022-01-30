@@ -21,7 +21,7 @@ namespace Platformer.Mechanics
         Material[] m_Material;
         public Texture m_MainTexture, m_AltMainTexture;
 
-        bool OppositeState { get; set; }
+        public bool OppositeState { get; set; }
 
         /// <summary>
         /// Max horizontal speed of the player.

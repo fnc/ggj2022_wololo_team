@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: AMONRA
     second: {fileID: 2100000, guid: ddda492d1a838a140b3770e0ce18f763, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Emisivo
+    second: {fileID: 2100000, guid: 723943d6dfc09e24194622e969ef4a74, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

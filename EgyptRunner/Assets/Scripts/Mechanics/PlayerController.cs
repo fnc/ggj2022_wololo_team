@@ -63,7 +63,7 @@ namespace Platformer.Mechanics
             audioSource = GetComponent<AudioSource>();
             collider2d = GetComponent<Collider2D>();
             //spriteRenderer = mesh.GetComponent<MeshRenderer>();
-            m_Material = mesh.GetComponent<Renderer>().material;
+            m_Material = mesh.GetComponent<Renderer>().materials[0];
             //animator = GetComponent<Animator>();
             OppositeState = false;
             glide = false;
@@ -84,11 +84,13 @@ namespace Platformer.Mechanics
                 {
                     if (OppositeState) {
                         m_Material.SetTexture("_MainTex", m_MainTexture);
+                        m_Material.EnableKeyword("_EMISSION");
                         OppositeState = false;
                     }
                     else
                     {
                         m_Material.SetTexture("_MainTex", m_AltMainTexture);
+                        m_Material.DisableKeyword("_EMISSION");
                         OppositeState = true;
                     }
                 }

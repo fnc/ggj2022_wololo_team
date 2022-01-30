@@ -3,7 +3,12 @@ guid: 37d24594746689b4289dda1011467142
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: AMONRA
+    second: {fileID: 2100000, guid: ddda492d1a838a140b3770e0ce18f763, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

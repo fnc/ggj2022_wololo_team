@@ -43,7 +43,6 @@ namespace Platformer.Mechanics
             previousLevelBlock = currentLevelBlock;
             currentLevelBlock = nextLevelBlock;
 
-            Debug.Log(lastXPosition);
             int blockCount = levelBlocks.Length;
             int myRandomIndex = Random.Range(0, blockCount);
             nextLevelBlock = Instantiate(levelBlocks[myRandomIndex], new Vector3(lastXPosition, 0, 0), Quaternion.identity);

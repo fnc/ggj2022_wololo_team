@@ -18,7 +18,7 @@ namespace Platformer.Mechanics
         public AudioClip respawnAudio;
         public AudioClip ouchAudio;
         public GameObject mesh;
-        Material m_Material;
+        Material[] m_Material;
         public Texture m_MainTexture, m_AltMainTexture;
 
         bool OppositeState { get; set; }
@@ -63,7 +63,7 @@ namespace Platformer.Mechanics
             audioSource = GetComponent<AudioSource>();
             collider2d = GetComponent<Collider2D>();
             //spriteRenderer = mesh.GetComponent<MeshRenderer>();
-            m_Material = mesh.GetComponent<Renderer>().materials[0];
+            m_Material = mesh.GetComponent<Renderer>().materials;
             //animator = GetComponent<Animator>();
             OppositeState = false;
             glide = false;
@@ -83,14 +83,18 @@ namespace Platformer.Mechanics
                 if (Input.GetButtonDown("Change"))
                 {
                     if (OppositeState) {
-                        m_Material.SetTexture("_MainTex", m_MainTexture);
-                        m_Material.EnableKeyword("_EMISSION");
+                        m_Material[0].SetTexture("_MainTex", m_MainTexture);
+                        m_Material[0].SetTexture("_EmissionMap", m_MainTexture);
+                        m_Material[1].SetColor("_EmissionColor", Color.white);
+                        //m_Material.EnableKeyword("_EMISSION");
                         OppositeState = false;
                     }
                     else
                     {
-                        m_Material.SetTexture("_MainTex", m_AltMainTexture);
-                        m_Material.DisableKeyword("_EMISSION");
+                        m_Material[0].SetTexture("_MainTex", m_AltMainTexture);
+                        m_Material[0].SetTexture("_EmissionMap", m_AltMainTexture);
+                        m_Material[1].SetColor("_EmissionColor", Color.black);
+                        //m_Material.DisableKeyword("_EMISSION");
                         OppositeState = true;
                     }
                 }

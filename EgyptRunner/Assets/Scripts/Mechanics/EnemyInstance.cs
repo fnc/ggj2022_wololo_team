@@ -67,9 +67,20 @@ namespace Platformer.Mechanics
             if (controller != null)
                 collected = true;
             //send an event into the gameplay system to perform some behaviour.
-            var ev = Schedule<PlayerTokenCollision>();
-            //ev.token = this;
+            var ev = Schedule<PlayerEnemyCollision>();
             ev.player = player;
+            ev.enemy = this;
+        }
+
+        void OnCollisionEnter2D(Collision2D collision)
+        {
+            var player = collision.gameObject.GetComponent<PlayerController>();
+            if (player != null)
+            {
+                var ev = Schedule<PlayerEnemyCollision>();
+                ev.player = player;
+                ev.enemy = this;
+            }
         }
 
         void FixedUpdate() {
